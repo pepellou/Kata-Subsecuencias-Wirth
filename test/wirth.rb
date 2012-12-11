@@ -17,6 +17,14 @@ describe 'wirth' do
 		end
 	end
 
+	it "returns string with length N" do
+		[1, 2, 3, 4, 5, 6].each do |n|
+			n.wirth.each do |string|
+				string.length.should == n
+			end
+		end
+	end
+
 end
 
 describe 'Acceptance Test', :if => false do
