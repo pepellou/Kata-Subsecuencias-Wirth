@@ -35,6 +35,23 @@ describe 'wirth' do
 			end
 		end
 
+		it "returns strins with no ABAB nor ABCABC nor similar" do
+			n.wirth.each do |string|
+				string.should_not include "ABAB"
+				string.should_not include "ABCABC"
+				string.should_not include "BCBC"
+				string.should_not include "BCABCA"
+				string.should_not include "ACAC"
+				string.should_not include "ACBACB"
+				string.should_not include "BABA"
+				string.should_not include "BABABA"
+				string.should_not include "CBCB"
+				string.should_not include "CBACBA"
+				string.should_not include "CACA"
+				string.should_not include "CABCAB"
+			end
+		end
+
 	end
 
 end
