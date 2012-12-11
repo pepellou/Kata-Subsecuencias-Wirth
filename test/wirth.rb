@@ -9,6 +9,14 @@ describe 'wirth' do
 		1.wirth.length.should_not == 0
 	end
 
+	it "returns only strings with A, B and C" do
+		1.wirth.each do |string|
+			string.each_char do |char|
+				"ABC".should include(char)
+			end
+		end
+	end
+
 end
 
 describe 'Acceptance Test', :if => false do

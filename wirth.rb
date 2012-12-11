@@ -1,7 +1,7 @@
 class Fixnum
 
 	def wirth
-		[0]
+		["A"]
 	end
 
 end
