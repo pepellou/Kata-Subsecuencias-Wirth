@@ -3,7 +3,15 @@ require 'rspec'
 
 require_relative '../wirth'
 
-describe 'Acceptance Test' do
+describe 'wirth' do
+
+	it "returns a non empty array" do
+		1.wirth.length.should_not == 0
+	end
+
+end
+
+describe 'Acceptance Test', :if => false do
 
 	it "solves N=1" do
 		1.wirth.should eql [ 'A', 'B', 'C' ]
