@@ -52,6 +52,18 @@ describe 'wirth' do
 			end
 		end
 
+		it "returns as much results as we can" do
+			known_results_for = {
+				1 => 3,
+				2 => 6,
+				3 => 12,
+				4 => 18,
+				5 => 30,
+				6 => 42
+			}
+			n.wirth.length.should >= known_results_for[n]
+		end
+
 	end
 
 end
