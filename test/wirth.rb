@@ -5,6 +5,8 @@ require_relative '../wirth'
 
 describe 'wirth' do
 
+	@n_cases = [1, 2, 3, 4, 5, 6]
+
 	it "returns a non empty array" do
 		1.wirth.length.should_not == 0
 	end
@@ -17,12 +19,22 @@ describe 'wirth' do
 		end
 	end
 
-	it "returns string with length N" do
-		[1, 2, 3, 4, 5, 6].each do |n|
+	@n_cases.each do |n|
+
+		it "returns string with length N" do
 			n.wirth.each do |string|
 				string.length.should == n
 			end
 		end
+
+		it "returns strings that contain no AA, BB or CC" do
+			n.wirth.each do |string|
+				string.should_not include "AA"
+				string.should_not include "BB"
+				string.should_not include "CC"
+			end
+		end
+
 	end
 
 end

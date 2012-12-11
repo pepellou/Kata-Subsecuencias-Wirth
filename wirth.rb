@@ -1,7 +1,8 @@
 class Fixnum
 
 	def wirth
-		["A" * self]
+		base_string = "ABCABC"
+		[ base_string[0..self-1] ]
 	end
 
 end
