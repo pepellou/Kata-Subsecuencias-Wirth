@@ -9,13 +9,13 @@ class Fixnum
 	end
 
 	def disallowed_strings
-		[ 
-			"AA", "BB", "CC",
-			"ABAB", "BABA", "BCBC",
-			"CBCB", "ACAC", "CACA",
-			"ABCABC", "BCABCA", "CBACBA",
-			"CABCAB", "ACBACB", "BACBAC",
-		]
+		result = []
+		(1..self/2).each do |n|
+			n.wirth.each do |string|
+				result.push(string + string)
+			end
+		end
+		result
 	end
 
  	def wirth_candidates
