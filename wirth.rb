@@ -1,33 +1,47 @@
+class Cache
+
+	attr_accessor :data
+
+	def initialize
+		@data = Hash.new
+	end
+
+	def store(key)
+		return @data[key] if @data.has_key? key
+		@data[key] = yield
+		@data[key]
+	end
+
+end
+
 class Fixnum
 
-	@@cache_strings = Hash.new
-	@@cache_candidates = Hash.new
-	@@cache_disallowed = Hash.new
+	@@cache_strings = Cache.new
+	@@cache_candidates = Cache.new
+	@@cache_disallowed = Cache.new
 
 	def wirth
-		return @@cache_strings[self] if @@cache_strings.has_key?(self)
-		candidates = wirth_candidates
-		disallowed_strings.each do |string|
-			candidates.delete_if { |e| e.include?(string) }
+		@@cache_strings.store(self) do
+			candidates = wirth_candidates
+			disallowed_strings.each do |string|
+				candidates.delete_if { |e| e.include?(string) }
+			end
+			candidates
 		end
-		@@cache_strings[self] = candidates
-		candidates
 	end
 
 	def disallowed_strings
-		return @@cache_disallowed[self] if @@cache_disallowed.has_key?(self)
-		result = ((1..self/2).to_a.map { |n| n.wirth }).flatten.map { |string| string + string }
-		@@cache_disallowed[self] = result
-		result
+		@@cache_disallowed.store(self) do
+			((1..self/2).to_a.map { |n| n.wirth }).flatten.map { |string| string + string }
+		end
 	end
 
  	def wirth_candidates
-		return @@cache_candidates[self] if @@cache_candidates.has_key?(self)
-		alphabet = ['A', 'B', 'C']
-		return alphabet if self == 1
-		result = (self - 1).wirth_candidates.product(alphabet).map { |candidate, suffix| candidate + suffix }
-		@@cache_candidates[self] = result
-		result
+		@@cache_candidates.store(self) do
+			alphabet = ['A', 'B', 'C']
+			return alphabet if self == 1
+			(self - 1).wirth_candidates.product(alphabet).map { |candidate, suffix| candidate + suffix }
+		end
 	end
 
 end
