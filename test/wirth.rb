@@ -127,4 +127,27 @@ describe 'Acceptance Test' do
 		]
 	end
 
+	it "returns exactly expected number of results for N <= 15" do
+		known_results_for = {
+			1 => 3,
+			2 => 6,
+			3 => 12,
+			4 => 18,
+			5 => 30,
+			6 => 42,
+			7 => 60,
+			8 => 78,
+			9 => 108,
+			10 => 144,
+			11 => 204,
+			12 => 264,
+			13 => 342,
+			14 => 456,
+			15 => 618
+		}
+		known_results_for.each do |n, num_results|
+			n.wirth.length.should == num_results
+		end
+	end
+
 end
