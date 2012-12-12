@@ -9,13 +9,7 @@ class Fixnum
 	end
 
 	def disallowed_strings
-		result = []
-		(1..self/2).each do |n|
-			n.wirth.each do |string|
-				result.push(string + string)
-			end
-		end
-		result
+		((1..self/2).to_a.map { |n| n.wirth }).flatten.map { |string| string + string }
 	end
 
  	def wirth_candidates
