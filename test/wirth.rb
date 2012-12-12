@@ -80,7 +80,7 @@ describe 'wirth' do
 
 end
 
-describe 'Acceptance Test', :if => false do
+describe 'Acceptance Test' do
 
 	it "solves N=1" do
 		1.wirth.should eql [ 'A', 'B', 'C' ]

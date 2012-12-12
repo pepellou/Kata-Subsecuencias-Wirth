@@ -15,13 +15,7 @@ class Fixnum
  	def wirth_candidates
 		alphabet = ['A', 'B', 'C']
 		return alphabet if self == 1
-		result = []
-		(self - 1).wirth_candidates.each do |string|
-			alphabet.each do |prefix|
-				result.push(prefix + string)
-			end
-		end
-		result
+		(self - 1).wirth_candidates.product(alphabet).map { |candidate, suffix| candidate + suffix }
 	end
 
 end
