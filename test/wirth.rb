@@ -44,7 +44,7 @@ describe 'wirth' do
 				string.should_not include "ACAC"
 				string.should_not include "ACBACB"
 				string.should_not include "BABA"
-				string.should_not include "BABABA"
+				string.should_not include "BACBAC"
 				string.should_not include "CBCB"
 				string.should_not include "CBACBA"
 				string.should_not include "CACA"
@@ -62,6 +62,18 @@ describe 'wirth' do
 				6 => 42
 			}
 			n.wirth.length.should >= known_results_for[n]
+		end
+
+		it "doesn't return more results than it can" do
+			max_results_for = {
+				1 => 3,
+				2 => 9,
+				3 => 27,
+				4 => 81,
+				5 => 243,
+				6 => 729
+			}
+			n.wirth.length.should <= max_results_for[n]
 		end
 
 	end
