@@ -2,22 +2,20 @@ class Fixnum
 
 	def wirth
 		candidates = wirth_candidates
-		candidates.delete_if { |e| e.include?("AA") }
-		candidates.delete_if { |e| e.include?("BB") }
-		candidates.delete_if { |e| e.include?("CC") }
-		candidates.delete_if { |e| e.include?("ABAB") }
-		candidates.delete_if { |e| e.include?("BABA") }
-		candidates.delete_if { |e| e.include?("BCBC") }
-		candidates.delete_if { |e| e.include?("CBCB") }
-		candidates.delete_if { |e| e.include?("ACAC") }
-		candidates.delete_if { |e| e.include?("CACA") }
-		candidates.delete_if { |e| e.include?("ABCABC") }
-		candidates.delete_if { |e| e.include?("BCABCA") }
-		candidates.delete_if { |e| e.include?("CBACBA") }
-		candidates.delete_if { |e| e.include?("CABCAB") }
-		candidates.delete_if { |e| e.include?("ACBACB") }
-		candidates.delete_if { |e| e.include?("BACBAC") }
+		disallowed_strings.each do |string|
+			candidates.delete_if { |e| e.include?(string) }
+		end
 		return candidates
+	end
+
+	def disallowed_strings
+		[ 
+			"AA", "BB", "CC",
+			"ABAB", "BABA", "BCBC",
+			"CBCB", "ACAC", "CACA",
+			"ABCABC", "BCABCA", "CBACBA",
+			"CABCAB", "ACBACB", "BACBAC",
+		]
 	end
 
  	def wirth_candidates
